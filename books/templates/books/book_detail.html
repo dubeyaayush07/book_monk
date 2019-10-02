@@ -1,0 +1,24 @@
+{% extends "books/base.html" %}
+{% block content %}
+<div class="books">
+        <div class="card book-container" style="width: 85vw;">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'book-detail' book.id %}">{{ object.title }}</a></h5>
+                <h6 class="card-subtitle mb-2 text-muted">By <a href="{% url 'user-books' book.post_author.username %}"> {{ book.post_author.username }}</a> on {{ book.date_posted|date:"F d, Y" }}</h6>
+                <p class="card-text">{{ object.details }}</p>
+                <p class="card-text">Contact information : {{ object.contact_info }}</p>
+                {% if object.for_sale %}
+                    <span class="card-link">Sale</span>
+                {% endif %}
+                {% if object.for_rent %}
+                    <span class="card-link">Rent</span>
+                {% endif %}
+                {% if object.post_author == user %}
+                    <div class="book-configure">
+                        <a class="btn btn-dark" href="{% url 'book-update' object.id %}">Update</a>
+                        <a class="btn btn-dark" href="{% url 'book-delete' object.id %}">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>        
+{% endblock content %} 

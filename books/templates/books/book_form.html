@@ -1,0 +1,12 @@
+{% extends "books/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <h3>Create Request</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div>{{ form|crispy }}</div>
+            <div><button class="btn btn-dark" type="submit">Submit</button></div>
+        </form>
+    </div>
+{% endblock content %}

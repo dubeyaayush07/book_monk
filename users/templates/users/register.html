@@ -1,0 +1,17 @@
+{% extends "books/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <h3>Register</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div>{{ form|crispy }}</div>
+            <div><button class="btn btn-dark" type="submit">Sign up</button></div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
